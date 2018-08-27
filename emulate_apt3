@@ -1,0 +1,58 @@
+# This script is meant to run commands that are know to be associated with the APT 3 group.
+# This is taken directly from:
+# https://attack.mitre.org/w/img_auth.php/f/f8/APT3_Adversary_Emulation_Field_Manual.xlsx
+
+# Here is the list of commands
+# ver
+# set
+# whoami /all /fo list
+# net config workstation
+# net config server
+# ipconfig /all
+# systeminfo [/s COMPNAME] [/u DOMAIN\user] [/p password]
+# reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections 
+# arp -a
+# route print
+# netstat -ano
+# tasklist /v [/svc]
+# net start
+# qprocess *"
+# net localgroup "Administrators"
+# net group ["Domain Admins"] /domain[:DOMAIN] 
+# net user [username] [/domain]
+# net group "Domain Computers" /domain[:DOMAIN]
+# net group "Domain Controllers" /domain[:DOMAIN]
+# net use [\\ip\path] [password] [/user:DOMAIN\user]
+# net use \\COMP\ADMIN$ password /user:COMP\Administrator (checking password reuse on local admin account)"
+# nbtstat -a {IP | COMP_NAME }
+# net share
+# net session | find / "\\"
+# net view \\host /all [/domain:domain]
+# nltest /dclist[:domain]
+# schtasks [/s HOSTNAME]
+# echo %LOGONSERVER%
+# dsquery group ""ou=Domain Admins,dc=domain,dc=com""
+# dsquery user ""dc=domain,dc=com""
+# dsquery * OU=""Domain Admins"",DC=domain,DC=com -scope base -attr SAMAccountName userPrincipalName Description
+# dsquery * -filter ""(&(objectCategory=contact)(objectCategory=person)(mail=*)(objectClass=user))"" -Attr samAccountName mail -Limit 0
+# dsquery * -filter ""(&(objectCategory=group)(name=*Admin*))"" -Attr name description members
+
+
+# Some helper information:
+# Get-ADDomain -Current LocalComputer
+# Get-ADDomain -Current LoggedOnUser
+# Get-ADDomain
+
+
+
+# Run 3 of these commands as part of Discovery - Partial
+# Run all of them as part of Discovery - Full
+# "ver", "set", "whoami /all /fo list", "ipconfig /all", "arp -a", "route print", "schtasks", "echo %LOGONSERVER%"
+
+
+# Run 1 of these as part of Enumeration
+# "tasklist /v [/svc]" OR "net start" OR "qprocess *""
+
+
+# Run 3 of these as part of Enumeration
+# "net localgroup "Administrators"", OR "net group ["Domain Admins"] /domain[:DOMAIN]" OR "net user [username] [/domain]" OR "net group "Domain Computers" /domain[:DOMAIN]", " OR "net group "Domain Controllers" /domain[:DOMAIN]" OR "net use [\\ip\path] [password] [/user:DOMAIN\user]" OR "net use \\COMP\ADMIN$ password /user:COMP\Administrator"", OR "nbtstat -a {IP | COMP_NAME }", OR "net share" OR "net session | find / "\\"" OR "net view \\host /all [/domain:domain]" OR "nltest /dclist[:domain]"
