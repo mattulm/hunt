@@ -1,0 +1,9 @@
+#idivudual arrays of commands
+$cmdTasklistArray = "taslklist", "tasklist /s /v", "taslklist /V", "taslklist /M", "tasklist /m /svc"
+$cmdNetArray = "net view /domain", "net user", "net user /domain", "net localgroup /add group1", "net localgroup", "net time", net share"
+
+# 1 big multi-array for all of the above as well.
+$myMultiArray = @(
+             ("taslklist", "tasklist /s /v", "taslklist /V", "taslklist /M", "tasklist /m /svc"),
+             ("net view /domain", "net user", "net user /domain", "net localgroup /add group1", "net localgroup", "net time", net share")
+   )
